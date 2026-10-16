@@ -178,6 +178,23 @@ tr:nth-child(even) {
     background-color: rgb(243, 246, 251);
 }
 
+.galerija {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 12px;                           
+    padding: 16px;                         
+    border: 4px solid #1a5fb4;
+    border-radius: 14px;
+    background-color: white;
+}
+
+.galerija img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;  
+    object-fit: cover;    
+    border-radius: 8px;
+}
 .kartite {
     box-sizing: border-box;
     width: 280px;
@@ -279,5 +296,8 @@ footer p {
     }
     section {
         padding: 20px 18px;
+    }
+        .galerija {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
