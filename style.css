@@ -1,9 +1,8 @@
-
 body {
     margin: 0;
     font-family: "Inter", Arial, Helvetica, sans-serif;
     color: #2b2b2b;
-    background-color: rgb(247, 244, 238);  
+    background-color: rgb(247, 244, 238);
 }
 h1, h2, h3 {
     font-family: "Lora", Georgia, "Times New Roman", serif;
@@ -11,14 +10,24 @@ h1, h2, h3 {
 }
 
 h1 {
-    font-size: 44px;
+    /* font-size: 44px; */
+    /* font-size: 2.75rem;   N8 5.: 44 / 16 = 2.75 */
+    /* font-size: 8vw;       N8 6.: 1280px platumā = 102.4px, 320px platumā = 25.6px */
+    font-size: clamp(1.75rem, 8vw, 2.5rem);
+    /* N8 6.: 1.75rem (28px) — minimums, mazāks nebūs;
+       8vw — vēlamais izmērs, 8% no ekrāna platuma, mainās kopā ar ekrānu;
+       2.5rem (40px) — maksimums, lielāks nebūs */
     margin: 0 0 4px;
 }
 
 h2 {
-    font-size: 26px;
+    /* font-size: 26px; */
+    font-size: 1.625rem; /* N8 5.: 26 / 16 = 1.625 */
     margin-top: 0;
 }
+/* N8 5.: Ar px, kad pārlūkā ieliku Font size → Very large, virsraksti palika tikpat lieli,
+   bet parastais teksts palielinājās — virsraksti kļuva gandrīz kā teksts.
+   Ar rem virsraksti palielinājās kopā ar tekstu. */
 
 h3 {
     font-size: 19px;
@@ -102,17 +111,21 @@ nav a:focus-visible {
     outline: 3px solid rgb(255, 230, 160);
     outline-offset: 2px;
 }
+
 main {
     max-width: 860px;
     margin: 0 auto;
     padding: 32px 16px;
 }
-selection{
+
+section {
     background-color: white;
     border: 2px solid #d9dee6;
     border-radius: 14px;
-    padding: 24px 28px;      
-    margin-bottom: 28px; }
+    padding: 24px 28px;
+    margin-bottom: 28px;
+}
+
 .ievads {
     display: flex;
     gap: 28px;
@@ -131,7 +144,7 @@ hr {
     margin: 18px 0;
 }
 
-selection{
+aside {
     background-color: #e9f0fa;
     border-left: 5px solid #1a5fb4;
     border-radius: 10px;
@@ -148,7 +161,6 @@ aside ul {
     line-height: 1.8;
 }
 
-
 .citats {
     color: gray;
     font-style: italic;
@@ -158,6 +170,7 @@ aside ul {
 #moto {
     color: #1a5fb4;
 }
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -180,9 +193,9 @@ tr:nth-child(even) {
 
 .galerija {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); 
-    gap: 12px;                           
-    padding: 16px;                         
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    padding: 16px;
     border: 4px solid #1a5fb4;
     border-radius: 14px;
     background-color: white;
@@ -191,13 +204,15 @@ tr:nth-child(even) {
 .galerija img {
     display: block;
     width: 100%;
-    aspect-ratio: 1 / 1;  
-    object-fit: cover;    
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
     border-radius: 8px;
 }
+
 .kartite {
     box-sizing: border-box;
     width: 280px;
+    max-width: 100%; /* N8 2.: kartīte nekad nav platāka par vecāku elementu */
     padding: 15px;
     border: 4px solid #1a5fb4;
     border-radius: 12px;
@@ -220,7 +235,6 @@ tr:nth-child(even) {
     margin-top: 30px;
 }
 
-
 form {
     display: grid;
     gap: 6px;
@@ -240,6 +254,7 @@ input, select, textarea {
     border-radius: 8px;
     background-color: white;
     color: #2b2b2b;
+    min-width: 0; /* N8 2.: bez šī 320px platumā lauki izlīda ārā no sekcijas */
 }
 input[type="email"] {
     border-style: dashed;
@@ -291,13 +306,73 @@ footer p {
     .ievads p {
         text-align: left;
     }
-    h1 {
+    /* h1 {
         font-size: 36px;
     }
+    N8 6.: izkomentēju — clamp() tagad pats samazina virsrakstu telefonā */
     section {
         padding: 20px 18px;
     }
-        .galerija {
+    .galerija {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+
+/* ===== N8 — responsīvais dizains ===== */
+
+/* N8 2. Kas plīst 320px platumā:
+   - navigācija: 6 saites sadalās vairākās nevienādās rindās un aizņem daudz vietas;
+   - kartīte: fiksētais platums 280px ir lielāks par vietu sekcijā → horizontāla ritjosla;
+   - galerija: bildes ļoti mazas;
+   - forma: ievades lauki izlīda ārā no sekcijas (izlaboju ar min-width: 0).
+   Kartītes platums ar max-width: 100%: 320px ekrānā — 248px, 1280px ekrānā — 280px. */
+
+/* N8 3. Navigācija telefonā */
+@media (max-width: 600px) {
+    nav {
+        width: 100%;
+    }
+    nav ul {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+    }
+    nav li {
+        margin: 0;
+    }
+    nav a {
+        display: block;
+        text-align: center;
+    }
+}
+/* Noteikumi iekš @media strādā tikai tad, kad nosacījums ir patiess —
+   šeit, kad loga platums ir 600px vai mazāks.
+   390px: izvēlne 2 kolonnās. 1280px: noteikumi nestrādā, izvēlne vienā rindā. */
+
+/* N8 4. Mobile-first: lielais attēls tikai platākiem ekrāniem */
+@media (min-width: 600px) {
+    .galerija .liela {
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+}
+/* max-width: 600px — strādā LĪDZ 600px (≤ 600px), mazajiem ekrāniem.
+   min-width: 600px — strādā NO 600px un platāk (≥ 600px), lielajiem ekrāniem.
+   Ārpus @media tagad ir stils mazākajam ekrānam (telefonam): visi attēli vienādi.
+   Lielajiem ekrāniem ar min-width tikai pievienojam lielo attēlu. */
+
+/* N8 7. Pārbaude: 320, 390, 768 un 1280px — horizontālas ritjoslas nav.
+
+   Elements       | Kā atrisināts         | Kāpēc
+   ---------------|-----------------------|----------------------------------------------
+   main           | bez @media            | max-width + margin: auto — centrējas un sašaurinās pats
+   kartīte        | bez @media            | max-width: 100% — nekad nav platāka par vecāku
+   virsraksts h1  | bez @media            | clamp() — izmērs mainās kopā ar ekrāna platumu
+   tabula, forma  | bez @media            | width: 100% / max-width — sašaurinās paši
+   navigācija     | @media (max-width)    | telefonā vajag citu izkārtojumu — 2 kolonnas
+   .ievads        | @media (max-width)    | bilde un teksts blakus neietilpst — vajag kolonnu
+   galerija       | @media (max-width)    | 4 kolonnas telefonā — bildes par mazām, vajag 2
+   lielais attēls | @media (min-width)    | mazā ekrānā izjauc režģi — tikai no 600px
+
+   @media vajag tad, kad mazam ekrānam vajag CITU noteikumu, nevis to pašu mazākā izmērā. */

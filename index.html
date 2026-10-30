@@ -2,7 +2,10 @@
 <html lang="lv">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- N8 1. prasība
+         Bez viewport rindas: innerWidth = 980. Lapa izskatījās kā samazināta datora versija — sīks teksts, @media nestrādāja.
+         Ar viewport rindu: innerWidth = 390. Lapa ir ekrāna platumā, teksts normālā izmērā, @media strādā. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Diāna — mana digitālā vizītkarte</title>
 
     <!-- Google Fonts: Lora virsrakstiem, Inter pārējam tekstam -->
@@ -22,12 +25,12 @@
                 <li><a href="#par-mani">Par mani</a></li>
                 <li><a href="#hobiji">Hobiji</a></li>
                 <li><a href="#prasmes">Prasmes</a></li>
-                 <li><a href="#galerija">Galerija</a></li>
+                <li><a href="#galerija">Galerija</a></li>
                 <li><a href="#jaunumi">Jaunumi</a></li>
                 <li><a href="#kontakti">Kontakti</a></li>
             </ul>
         </nav>
-    </header>   
+    </header>
 
     <main>
 
@@ -38,7 +41,7 @@
                 <h1 id="vards">Diana</h1>
                 <h2>Par mani</h2>
                 <p>
-                    Sveiki! Mani sauc Diana un es mācos <strong>3.kursi</strong>Es nezinu, kāpēc es rakstu šeit, um... paldies par uzmanību. 
+                    Sveiki! Mani sauc Diana un es mācos <strong>3. kursā</strong>. Es nezinu, kāpēc es rakstu šeit, um... paldies par uzmanību.
                 </p>
                 <hr>
                 <p>
@@ -53,7 +56,7 @@
             <h3>Īsumā par mani</h3>
             <ul>
                 <li><b>Pilsēta:</b> Rīga</li>
-                <li><b>Mācības:</b>3.kurss, programmēšanas tehniķis</li>
+                <li><b>Mācības:</b> 3. kurss, programmēšanas tehniķis</li>
                 <li><b>Valodas:</b> latviešu, krievu, angļu, vācu</li>
                 <li><b>Mīļākais rīks:</b> VS Code</li>
             </ul>
@@ -75,24 +78,28 @@
                 <li>Apgūt JavaScript pamatus</li>
                 <li>Nokārtot praksi kādā IT uzņēmumā</li>
             </ol>
+
+            <!-- N8 2. prasība: kartīte (pārbaudām 320px un 1280px platumā) -->
+            <div class="kartite">
+                <h3>Šobrīd mācos</h3>
+                <p>Responsīvo dizainu: media queries, rem un vw.</p>
+            </div>
         </section>
 
-
         <section id="galerija">
-        <h2>Galerija</h2>
+            <h2>Galerija</h2>
 
-        <div class="galerija">
-            <img class="liela" src="galerija/1.jpg" alt="некое морское существо">
-            <img src="galerija/2.jpg" alt="я">
-            <img src="galerija/3.jpg" alt="кот с пистолетом">
-            <img src="galerija/4.jpg" alt="рыба в крутых кедах">
-            <img src="galerija/5.jpg" alt="креветка за ноутом, символизация осанки программиста">
-            <img src="galerija/6.jpg" alt="программист в день делайна">
-            <img src="galerija/7.jpg" alt="код сломался">
-            <img src="galerija/8.jpg" alt="код сломался 2х">
-
-        </div>
-    </section>
+            <div class="galerija">
+                <img class="liela" src="galerija/1.jpg" alt="некое морское существо">
+                <img src="galerija/2.jpg" alt="я">
+                <img src="galerija/3.jpg" alt="кот с пистолетом">
+                <img src="galerija/4.jpg" alt="рыба в крутых кедах">
+                <img src="galerija/5.jpg" alt="креветка за ноутом, символизация осанки программиста">
+                <img src="galerija/6.jpg" alt="программист в день делайна">
+                <img src="galerija/7.jpg" alt="код сломался">
+                <img src="galerija/8.jpg" alt="код сломался 2х">
+            </div>
+        </section>
 
         <section id="prasmes">
             <h2>Prasmes</h2>
@@ -116,13 +123,13 @@
                 <tr>
                     <td>Figma</td>
                     <td>Vidēji</td>
-                </tr> 
+                </tr>
                 <tr>
                     <td>Angļu valoda</td>
                     <td>B2</td>
                 </tr>
                 <tr>
-                    <td>Latviešū valoda</td>
+                    <td>Latviešu valoda</td>
                     <td>B2</td>
                 </tr>
                 <tr>
@@ -142,7 +149,7 @@
             <ul>
                 <li><b>пипипип</b> кукуку</li>
                 <li><b>пипипи</b> привет я пельмешееек</li>
-                <li><b>морская свинья</b>пернула под себя</li>
+                <li><b>морская свинья</b> пернула под себя</li>
             </ul>
         </section>
 
@@ -172,7 +179,7 @@
     </main>
 
     <footer>
-        <p>© 2026 Diana </p>
+        <p>© 2026 Diana</p>
     </footer>
 
 </body>
