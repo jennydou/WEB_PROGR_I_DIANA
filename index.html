@@ -1,186 +1,351 @@
 <!DOCTYPE html>
-<html lang="lv">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- N8 1. prasība
-         Bez viewport rindas: innerWidth = 980. Lapa izskatījās kā samazināta datora versija — sīks teksts, @media nestrādāja.
-         Ar viewport rindu: innerWidth = 390. Lapa ir ekrāna platumā, teksts normālā izmērā, @media strādā. -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Diāna — mana digitālā vizītkarte</title>
+    <title>Just Dou — Frontend Developer Portfolio</title>
+    <meta name="description" content="Just Dou — frontend developer from Riga, Latvia. Portfolio, skills, projects and contacts. Open to remote work.">
 
-    <!-- Google Fonts: Lora virsrakstiem, Inter pārējam tekstam -->
+    <!-- Google Fonts: Inter for text, JetBrains Mono for the "code" accents -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Lora:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 
-    <!-- Viss noformējums atsevišķā failā -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header>
-        <p class="logo">Diana <span>.vizītkarte</span></p>
-        <nav>
-            <ul>
-                <li><a href="#par-mani">Par mani</a></li>
-                <li><a href="#hobiji">Hobiji</a></li>
-                <li><a href="#prasmes">Prasmes</a></li>
-                <li><a href="#galerija">Galerija</a></li>
-                <li><a href="#jaunumi">Jaunumi</a></li>
-                <li><a href="#kontakti">Kontakti</a></li>
-            </ul>
-        </nav>
+    <!-- Decorative side frames (visible only on wide screens) -->
+    <div class="side-frame side-frame--left" aria-hidden="true">
+        <span class="side-frame__dots"><i></i><i></i><i></i></span>
+        <pre><code>01  const dev = {
+02    name: "Just Dou",
+03    role: "frontend",
+04    city: "Riga",
+05    remote: true,
+06  };
+07
+08  function build() {
+09    return ideas
+10      .map(design)
+11      .map(code)
+12      .filter(works);
+13  }
+14
+15  // keep shipping
+16  build();</code></pre>
+        <span class="side-frame__label">portfolio.js</span>
+    </div>
+
+    <div class="side-frame side-frame--right" aria-hidden="true">
+        <span class="side-frame__dots"><i></i><i></i><i></i></span>
+        <pre><code>.dev {
+  focus: frontend;
+  stack: html css js;
+  mode: remote;
+}
+
+.coffee {
+  level: 100%;
+}
+
+&lt;/&gt;  status:
+  available
+  for work ✓</code></pre>
+        <span class="side-frame__label">style.css</span>
+    </div>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="logo" href="#about">
+                <span class="logo__bracket">&lt;</span>Just Dou<span class="logo__bracket">/&gt;</span>
+            </a>
+            <nav aria-label="Main navigation">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#languages">Languages</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main>
 
-        <section id="par-mani" class="ievads">
-            <img src="diana.jpg" width="180" height="180"
-                 alt="Ilustrēts Diana portrets">
-            <div>
-                <h1 id="vards">Diana</h1>
-                <h2>Par mani</h2>
+        <!-- ===== ABOUT / HERO ===== -->
+        <section id="about" class="hero">
+            <img class="hero__photo" src="diana.jpg" width="180" height="180"
+                 alt="Illustrated portrait of Just Dou">
+            <div class="hero__text">
+                <p class="hero__hello"><span class="mono">// hello, world</span></p>
+                <h1 id="name">Just Dou</h1>
+                <p class="hero__role">Frontend Developer <span class="dot">•</span> Riga, Latvia</p>
+                <span class="badge"><span class="badge__pulse"></span>Open to remote &amp; freelance work</span>
+
                 <p>
-                    Sveiki! Mani sauc Diana un es mācos <strong>3. kursā</strong>. Es nezinu, kāpēc es rakstu šeit, um... paldies par uzmanību.
+                    I build websites that are <strong>clean, fast and easy to use</strong> — on any screen.
+                    My main focus is frontend: semantic HTML, modern responsive CSS and JavaScript
+                    that makes pages feel alive. I care about the details users notice
+                    and the ones they don’t — readable code, accessibility and layouts that never break.
                 </p>
-                <hr>
                 <p>
-                    Nākotnē gribu kļūt par <span class="izcelts">frontend izstrādātāju</span> un veidot vietnes,
-                    kas ir ne tikai skaistas, bet arī ērtas visiem lietotājiem. Visvairāk idejām un piemēriem
-                    izmantoju <a href="https://www.w3schools.com" target="_blank" rel="noopener">w3schools.com</a>.
+                    I have a background in IT studies and hands-on experience with several programming
+                    languages, from <span class="highlight">JavaScript and TypeScript</span> to Python, PHP and the C family.
+                    Right now I’m growing my portfolio with real projects and looking for my next
+                    <span class="highlight">remote project or team</span>.
                 </p>
+
+                <div class="hero__buttons">
+                    <a class="btn btn--primary" href="#projects">View projects</a>
+                    <a class="btn btn--ghost" href="#contact">Contact me</a>
+                </div>
             </div>
         </section>
 
-        <aside>
-            <h3>Īsumā par mani</h3>
+        <aside class="facts" aria-labelledby="facts-title">
+            <h3 id="facts-title">Quick facts</h3>
             <ul>
-                <li><b>Pilsēta:</b> Rīga</li>
-                <li><b>Mācības:</b> 3. kurss, programmēšanas tehniķis</li>
-                <li><b>Valodas:</b> latviešu, krievu, angļu, vācu</li>
-                <li><b>Mīļākais rīks:</b> VS Code</li>
+                <li><b>Location:</b> Riga, Latvia (UTC+2)</li>
+                <li><b>Focus:</b> Frontend development</li>
+                <li><b>Education:</b> IT / programming</li>
+                <li><b>Work format:</b> Remote, freelance</li>
+                <li><b>Languages:</b> English, Latvian, Russian</li>
+                <li><b>Favourite tool:</b> VS Code</li>
             </ul>
-            <p id="moto" class="citats">“Labs dizains ir tas, kuru nepamani — tas vienkārši strādā.”</p>
+            <p class="quote">“Good design is the one you don’t notice — it just works.”</p>
         </aside>
 
-        <section id="hobiji">
-            <h2>Hobiji un intereses</h2>
-            <ul>
-                <li>Mājaslapu dizains un zīmēšana Figmā</li>
-                <li>Fotografēšana ar telefonu — īpaši pilsēta vakaros</li>
-                <li>Grāmatas un seriāli par detektīviem</li>
-                <li>Joga un garas pastaigas pa Vecrīgu</li>
+        <!-- ===== SKILLS ===== -->
+        <section id="skills">
+            <h2><span class="mono accent">01.</span> Technical skills</h2>
+            <p class="section-intro">Programming languages and technologies I work with.</p>
+
+            <div class="table-wrap">
+                <table class="skills-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Language</th>
+                            <th scope="col">Level</th>
+                            <th scope="col" class="col-bar"><span class="visually-hidden">Progress</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="tech">HTML</span></td>
+                            <td><span class="level level--good">Good</span></td>
+                            <td class="col-bar"><span class="bar"><span style="width: 80%"></span></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="tech">CSS</span></td>
+                            <td><span class="level level--good">Good</span></td>
+                            <td class="col-bar"><span class="bar"><span style="width: 75%"></span></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="tech">JavaScript</span></td>
+                            <td><span class="level level--good">Good</span></td>
+                            <td class="col-bar"><span class="bar"><span style="width: 70%"></span></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="tech">TypeScript</span></td>
+                            <td><span class="level">Intermediate</span></td>
+                            <td class="col-bar"><span class="bar"><span style="width: 60%"></span></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="tech">Python</span></td>
+                            <td><span class="level">Intermediate</span></td>
+                            <td class="col-bar"><span class="bar"><span style="width: 60%"></span></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="tech">PHP</span></td>
+                            <td><span class="level">Intermediate</span></td>
+                            <td class="col-bar"><span class="bar"><span style="width: 55%"></span></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="tech">C</span></td>
+                            <td><span class="level">Intermediate</span></td>
+                            <td class="col-bar"><span class="bar"><span style="width: 55%"></span></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="tech">C++</span></td>
+                            <td><span class="level">Intermediate</span></td>
+                            <td class="col-bar"><span class="bar"><span style="width: 55%"></span></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="tech">C#</span></td>
+                            <td><span class="level">Intermediate</span></td>
+                            <td class="col-bar"><span class="bar"><span style="width: 55%"></span></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Tools</h3>
+            <ul class="chips">
+                <li>VS Code</li>
+                <li>Git</li>
+                <li>GitHub</li>
+                <li>Figma</li>
+                <li>Responsive design</li>
+                <li>Chrome DevTools</li>
             </ul>
 
-            <h3>Mani mērķi šim mācību gadam</h3>
-            <ol>
-                <li>Uztaisīt savu portfolio vietni</li>
-                <li>Apgūt JavaScript pamatus</li>
-                <li>Nokārtot praksi kādā IT uzņēmumā</li>
-            </ol>
-
-            <!-- N8 2. prasība: kartīte (pārbaudām 320px un 1280px platumā) -->
-            <div class="kartite">
-                <h3>Šobrīd mācos</h3>
-                <p>Responsīvo dizainu: media queries, rem un vw.</p>
+            <div class="card">
+                <h3>Currently working on</h3>
+                <p>Building portfolio projects, going deeper into TypeScript and React, and taking on my first remote clients.</p>
             </div>
         </section>
 
-        <section id="galerija">
-            <h2>Galerija</h2>
+        <!-- ===== SPOKEN LANGUAGES ===== -->
+        <section id="languages">
+            <h2><span class="mono accent">02.</span> Languages</h2>
+            <p class="section-intro">I can work and communicate with clients in three languages.</p>
 
-            <div class="galerija">
-                <img class="liela" src="galerija/1.jpg" alt="некое морское существо">
-                <img src="galerija/2.jpg" alt="я">
-                <img src="galerija/3.jpg" alt="кот с пистолетом">
-                <img src="galerija/4.jpg" alt="рыба в крутых кедах">
-                <img src="galerija/5.jpg" alt="креветка за ноутом, символизация осанки программиста">
-                <img src="galerija/6.jpg" alt="программист в день делайна">
-                <img src="galerija/7.jpg" alt="код сломался">
-                <img src="galerija/8.jpg" alt="код сломался 2х">
+            <div class="table-wrap">
+                <table class="lang-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Language</th>
+                            <th scope="col">Level</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>🇬🇧 English</td>
+                            <td><span class="level level--good">Advanced (C1)</span></td>
+                        </tr>
+                        <tr>
+                            <td>🇱🇻 Latvian</td>
+                            <td><span class="level level--native">Native — bilingual</span></td>
+                        </tr>
+                        <tr>
+                            <td>🇷🇺 Russian</td>
+                            <td><span class="level level--native">Native — bilingual</span></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </section>
 
-        <section id="prasmes">
-            <h2>Prasmes</h2>
-            <table>
-                <tr>
-                    <th>Prasme</th>
-                    <th>Līmenis</th>
-                </tr>
-                <tr>
-                    <td>HTML</td>
-                    <td class="izcelts">Labi</td>
-                </tr>
-                <tr>
-                    <td>CSS</td>
-                    <td>Vidēji</td>
-                </tr>
-                <tr>
-                    <td>JavaScript</td>
-                    <td>Iesācēja</td>
-                </tr>
-                <tr>
-                    <td>Figma</td>
-                    <td>Vidēji</td>
-                </tr>
-                <tr>
-                    <td>Angļu valoda</td>
-                    <td>B2</td>
-                </tr>
-                <tr>
-                    <td>Latviešu valoda</td>
-                    <td>B2</td>
-                </tr>
-                <tr>
-                    <td>Vācu valoda</td>
-                    <td>B1</td>
-                </tr>
-                <tr>
-                    <td>Krievu valoda</td>
-                    <td>C2</td>
-                </tr>
-            </table>
+        <!-- ===== PROJECTS (GitHub) ===== -->
+        <section id="projects">
+            <h2><span class="mono accent">03.</span> Projects</h2>
+            <p class="section-intro">
+                My code lives on GitHub. New projects are on the way — links and descriptions will appear here.
+            </p>
+
+            <div class="projects">
+
+                <!-- Copy this whole <article> block to add a new project -->
+                <article class="project">
+                    <a class="project__link" href="https://github.com/" target="_blank" rel="noopener">
+                        <svg class="gh-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.130-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                        <span class="project__repo">repo / todo-app</span>
+                        <span class="project__cta">View on GitHub →</span>
+                    </a>
+                    <div class="project__info">
+                        <div class="project__head">
+                            <h3>To-Do App</h3>
+                            <span class="status">Coming soon</span>
+                        </div>
+                        <p>Project description goes here: what the app does, what problem it solves and what I learned while building it.</p>
+                        <ul class="tags">
+                            <li>HTML</li><li>CSS</li><li>JavaScript</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="project">
+                    <a class="project__link" href="https://github.com/" target="_blank" rel="noopener">
+                        <svg class="gh-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                        <span class="project__repo">repo / weather-app</span>
+                        <span class="project__cta">View on GitHub →</span>
+                    </a>
+                    <div class="project__info">
+                        <div class="project__head">
+                            <h3>Weather App</h3>
+                            <span class="status">Coming soon</span>
+                        </div>
+                        <p>Project description goes here: a weather app that loads live data from a public API and shows a forecast for any city.</p>
+                        <ul class="tags">
+                            <li>JavaScript</li><li>API</li><li>CSS</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="project">
+                    <a class="project__link" href="https://github.com/" target="_blank" rel="noopener">
+                        <svg class="gh-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                        <span class="project__repo">repo / expense-tracker</span>
+                        <span class="project__cta">View on GitHub →</span>
+                    </a>
+                    <div class="project__info">
+                        <div class="project__head">
+                            <h3>Expense Tracker</h3>
+                            <span class="status">Coming soon</span>
+                        </div>
+                        <p>Project description goes here: a simple tracker for daily expenses with categories, totals and data saved in the browser.</p>
+                        <ul class="tags">
+                            <li>TypeScript</li><li>LocalStorage</li>
+                        </ul>
+                    </div>
+                </article>
+
+            </div>
+
+            <a class="btn btn--ghost github-all" href="https://github.com/" target="_blank" rel="noopener">All my code on GitHub →</a>
         </section>
 
-        <section id="jaunumi">
-            <h2>Jaunumi</h2>
-            <p>Севодня я сталкгулся впервые с 404</p>
-            <ul>
-                <li><b>пипипип</b> кукуку</li>
-                <li><b>пипипи</b> привет я пельмешееек</li>
-                <li><b>морская свинья</b> пернула под себя</li>
-            </ul>
+        <!-- ===== GALLERY ===== -->
+        <section id="gallery">
+            <h2><span class="mono accent">04.</span> Off the keyboard</h2>
+            <p class="section-intro">A bit of developer life — because not everything is code.</p>
+
+            <div class="gallery">
+                <img class="big" src="galerija/1.jpg" alt="A mysterious sea creature">
+                <img src="galerija/2.jpg" alt="Me">
+                <img src="galerija/3.jpg" alt="A cat with a gun">
+                <img src="galerija/4.jpg" alt="A fish in cool sneakers">
+                <img src="galerija/5.jpg" alt="A shrimp at a laptop — the classic programmer posture">
+                <img src="galerija/6.jpg" alt="A programmer on deadline day">
+                <img src="galerija/7.jpg" alt="The code broke">
+                <img src="galerija/8.jpg" alt="The code broke — part 2">
+            </div>
         </section>
 
-        <section id="kontakti">
-            <h2>Kontakti</h2>
-            <p>Ja gribi sadarboties vai vienkārši pajautāt kaut ko — raksti!</p>
+        <!-- ===== CONTACT ===== -->
+        <section id="contact">
+            <h2><span class="mono accent">05.</span> Contact</h2>
+            <p class="section-intro">Have a project, a question or a job offer? Send me a message — I usually reply within a day.</p>
+
             <form>
-                <label for="vardsLauks">Vārds</label>
-                <input type="text" id="vardsLauks" name="vards" placeholder="Tavs vārds">
+                <label for="nameField">Name</label>
+                <input type="text" id="nameField" name="name" placeholder="Your name">
 
-                <label for="epasts">E-pasts</label>
-                <input type="email" id="epasts" name="epasts" placeholder="vards@piemers.lv">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="name@example.com">
 
-                                <label for="tema">Tēma</label>
-                <select id="tema" name="tema">
-                    <option>Sadarbība</option>
-                    <option>Jautājums</option>
-                    <option>Cits</option>
+                <label for="topic">Topic</label>
+                <select id="topic" name="topic">
+                    <option>Project / collaboration</option>
+                    <option>Job offer</option>
+                    <option>Question</option>
+                    <option>Other</option>
                 </select>
 
-                <label for="zinja">Ziņa</label>
-                <textarea id="zinja" name="zinja" rows="5" placeholder="Tava ziņa..."></textarea>
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" placeholder="Tell me about your project..."></textarea>
 
-                <button type="submit">Nosūtīt</button>
+                <button type="submit">Send message</button>
             </form>
         </section>
 
     </main>
 
     <footer>
-        <p>© 2026 Diana</p>
+        <p><span class="mono">&lt;/&gt;</span> © 2026 Just Dou — built with HTML &amp; CSS</p>
     </footer>
 
 </body>

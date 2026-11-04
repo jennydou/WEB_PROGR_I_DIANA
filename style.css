@@ -1,174 +1,442 @@
+/* =========================================================
+   Just Dou — Frontend Developer Portfolio
+   ========================================================= */
+
+/* ----- Colors & shared values ----- */
+:root {
+    --bg: #f4f1ea;
+    --surface: #ffffff;
+    --text: #1f2430;
+    --muted: #5b6372;
+    --border: #e1e4ea;
+
+    --accent: #1a5fb4;
+    --accent-dark: #144a8c;
+    --accent-soft: #e8f0fb;
+    --yellow: #ffe6a0;
+    --green: #2ea043;
+
+    --dark: #161b26;
+    --radius: 16px;
+    --shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 8px 24px rgba(16, 24, 40, 0.06);
+    --mono: "JetBrains Mono", Consolas, monospace;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px; /* so the sticky header doesn't cover section titles */
+}
+
 body {
     margin: 0;
     font-family: "Inter", Arial, Helvetica, sans-serif;
-    color: #2b2b2b;
-    background-color: rgb(247, 244, 238);
+    color: var(--text);
+    background-color: var(--bg);
+    /* subtle dot grid so the background isn't empty */
+    background-image: radial-gradient(rgba(26, 95, 180, 0.12) 1px, transparent 1px);
+    background-size: 22px 22px;
+    line-height: 1.6;
 }
+
 h1, h2, h3 {
-    font-family: "Lora", Georgia, "Times New Roman", serif;
-    line-height: 1.25;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
 }
 
 h1 {
-    /* font-size: 44px; */
-    /* font-size: 2.75rem;   N8 5.: 44 / 16 = 2.75 */
-    /* font-size: 8vw;       N8 6.: 1280px platumā = 102.4px, 320px platumā = 25.6px */
-    font-size: clamp(1.75rem, 8vw, 2.5rem);
-    /* N8 6.: 1.75rem (28px) — minimums, mazāks nebūs;
-       8vw — vēlamais izmērs, 8% no ekrāna platuma, mainās kopā ar ekrānu;
-       2.5rem (40px) — maksimums, lielāks nebūs */
-    margin: 0 0 4px;
+    font-size: clamp(2rem, 8vw, 3rem); /* min 32px, grows with screen, max 48px */
+    font-weight: 800;
+    margin: 0 0 6px;
 }
 
 h2 {
-    /* font-size: 26px; */
-    font-size: 1.625rem; /* N8 5.: 26 / 16 = 1.625 */
-    margin-top: 0;
+    font-size: 1.625rem;
+    font-weight: 700;
+    margin: 0 0 6px;
+    color: var(--dark);
 }
-/* N8 5.: Ar px, kad pārlūkā ieliku Font size → Very large, virsraksti palika tikpat lieli,
-   bet parastais teksts palielinājās — virsraksti kļuva gandrīz kā teksts.
-   Ar rem virsraksti palielinājās kopā ar tekstu. */
 
 h3 {
-    font-size: 19px;
+    font-size: 1.15rem;
+    font-weight: 700;
 }
 
 p {
     line-height: 1.7;
-    color: #333333;
+    color: #333a47;
 }
 
-ul, ol {
-    line-height: 1.8;
+a {
+    color: var(--accent);
 }
 
-h2 {
-    color: gray;
-}
-h2 {
-    color: #163e6c;
+.mono {
+    font-family: var(--mono);
 }
 
-#vards {
-    color: #1a5fb4;
-    letter-spacing: 0.5px;
+.accent {
+    color: var(--accent);
+    font-weight: 600;
 }
 
-.izcelts {
-    background-color: rgb(255, 230, 160);
-    color: #2b2b2b;
+.highlight {
+    background-color: var(--yellow);
     padding: 1px 6px;
     border-radius: 4px;
     font-weight: 600;
 }
 
-header {
-    background-color: #1a5fb4;
-    color: white;
-    text-align: center;
-    padding: 18px 16px 10px;
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+/* =========================================================
+   Decorative side frames (only on wide screens)
+   ========================================================= */
+.side-frame {
+    display: none;
+}
+
+@media (min-width: 1280px) {
+    .side-frame {
+        display: block;
+        position: fixed;
+        top: 120px;
+        width: calc((100vw - 900px) / 2 - 64px);
+        max-width: 280px;
+        padding: 38px 18px 18px;
+        background-color: rgba(22, 27, 38, 0.92);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: var(--radius);
+        box-shadow: 0 12px 40px rgba(16, 24, 40, 0.18);
+        color: #9fb3d1;
+        font-family: var(--mono);
+        font-size: 12px;
+        pointer-events: none;
+        user-select: none;
+        z-index: 0;
+    }
+
+    .side-frame--left {
+        left: 32px;
+        transform: rotate(-2deg);
+    }
+
+    .side-frame--right {
+        right: 32px;
+        top: 220px;
+        transform: rotate(2deg);
+    }
+
+    .side-frame pre {
+        margin: 0;
+        white-space: pre;
+        overflow: hidden;
+        line-height: 1.7;
+    }
+
+    .side-frame__dots {
+        position: absolute;
+        top: 14px;
+        left: 16px;
+        display: flex;
+        gap: 6px;
+    }
+
+    .side-frame__dots i {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #ff5f57;
+    }
+    .side-frame__dots i:nth-child(2) { background: #febc2e; }
+    .side-frame__dots i:nth-child(3) { background: #28c840; }
+
+    .side-frame__label {
+        position: absolute;
+        top: 11px;
+        right: 16px;
+        font-size: 11px;
+        color: #6b7a90;
+    }
+}
+
+/* =========================================================
+   Header & navigation
+   ========================================================= */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: rgba(22, 27, 38, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.header-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
 }
 
 .logo {
-    margin: 0 0 8px;
-    font-family: "Lora", Georgia, serif;
-    font-size: 24px;
-    font-weight: 700;
-    color: white;
+    font-family: var(--mono);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #ffffff;
+    text-decoration: none;
 }
 
-.logo span {
-    font-weight: 600;
-    opacity: 0.85;
+.logo__bracket {
+    color: #6ea8fe;
 }
 
 nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
-}
-
-nav li {
-    display: inline-block;
-    margin: 4px 2px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
 }
 
 nav a {
     display: inline-block;
-    padding: 6px 14px;
-    color: white;
+    padding: 7px 14px;
+    color: #d6deeb;
     text-decoration: none;
-    border: 2px solid transparent;
-    border-radius: 20px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-radius: 999px;
+    transition: background-color 0.2s, color 0.2s;
 }
 
 nav a:hover {
-    background-color: white;
-    color: #1a5fb4;
+    background-color: #ffffff;
+    color: var(--dark);
 }
 
-nav a:focus-visible {
-    outline: 3px solid rgb(255, 230, 160);
+nav a:focus-visible,
+.btn:focus-visible,
+.project__link:focus-visible {
+    outline: 3px solid var(--yellow);
     outline-offset: 2px;
 }
 
+/* =========================================================
+   Layout
+   ========================================================= */
 main {
-    max-width: 860px;
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
     margin: 0 auto;
-    padding: 32px 16px;
+    padding: 40px 16px;
 }
 
 section {
-    background-color: white;
-    border: 2px solid #d9dee6;
-    border-radius: 14px;
-    padding: 24px 28px;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 32px;
     margin-bottom: 28px;
 }
 
-.ievads {
-    display: flex;
-    gap: 28px;
-    align-items: flex-start;
+.section-intro {
+    margin: 0 0 22px;
+    color: var(--muted);
 }
 
-.ievads img {
+/* =========================================================
+   Hero / About
+   ========================================================= */
+.hero {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+}
+
+/* blue strip on top of the hero card */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 6px;
+    background: linear-gradient(90deg, var(--accent), #6ea8fe, var(--yellow));
+}
+
+.hero__photo {
     flex-shrink: 0;
     border-radius: 50%;
-    border: 4px solid #e3ecf8;
+    border: 5px solid var(--accent-soft);
+    box-shadow: 0 0 0 2px var(--accent);
+    object-fit: cover;
+    background-color: var(--accent-soft);
 }
 
-hr {
-    border: none;
-    border-top: 1px solid #d9dee6;
-    margin: 18px 0;
+.hero__hello {
+    margin: 0 0 4px;
+    color: var(--muted);
+    font-size: 0.9rem;
 }
 
-aside {
-    background-color: #e9f0fa;
-    border-left: 5px solid #1a5fb4;
+#name {
+    color: var(--accent);
+}
+
+.hero__role {
+    margin: 0 0 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.dot {
+    color: var(--accent);
+    margin: 0 4px;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #1a6b34;
+    background-color: #e6f6ea;
+    border: 1px solid #bfe5c9;
+    border-radius: 999px;
+}
+
+.badge__pulse {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--green);
+    box-shadow: 0 0 0 0 rgba(46, 160, 67, 0.6);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    70%  { box-shadow: 0 0 0 8px rgba(46, 160, 67, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(46, 160, 67, 0); }
+}
+
+.hero__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+/* ----- Buttons ----- */
+.btn {
+    display: inline-block;
+    padding: 11px 22px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
     border-radius: 10px;
-    padding: 18px 24px;
+    transition: transform 0.15s, background-color 0.2s, color 0.2s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn--primary {
+    color: #ffffff;
+    background-color: var(--accent);
+}
+
+.btn--primary:hover {
+    background-color: var(--accent-dark);
+}
+
+.btn--ghost {
+    color: var(--accent);
+    border: 2px solid var(--accent);
+}
+
+.btn--ghost:hover {
+    color: #ffffff;
+    background-color: var(--accent);
+}
+
+/* =========================================================
+   Quick facts
+   ========================================================= */
+.facts {
+    background-color: var(--dark);
+    color: #d6deeb;
+    border-radius: var(--radius);
+    padding: 24px 28px;
     margin-bottom: 28px;
+    box-shadow: var(--shadow);
 }
 
-aside h3 {
+.facts h3 {
     margin-top: 0;
+    color: #ffffff;
+    font-family: var(--mono);
+    font-size: 1rem;
 }
 
-aside ul {
-    padding-left: 20px;
-    line-height: 1.8;
+.facts h3::before {
+    content: "> ";
+    color: #6ea8fe;
 }
 
-.citats {
-    color: gray;
+.facts ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 6px 24px;
+}
+
+.facts b {
+    color: #6ea8fe;
+    font-weight: 600;
+}
+
+.quote {
+    margin: 18px 0 0;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     font-style: italic;
     text-align: center;
-    margin-bottom: 0;
+    color: var(--yellow);
 }
-#moto {
-    color: #1a5fb4;
+
+/* =========================================================
+   Tables (skills + languages)
+   ========================================================= */
+.table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 12px;
 }
 
 table {
@@ -178,201 +446,392 @@ table {
 
 th, td {
     text-align: left;
-    padding: 10px 14px;
-    border-bottom: 1px solid #e3e6eb;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
 }
 
 th {
-    background-color: #1a5fb4;
-    color: white;
+    background-color: var(--dark);
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
-tr:nth-child(even) {
-    background-color: rgb(243, 246, 251);
+tbody tr:nth-child(even) {
+    background-color: #f7f9fc;
 }
 
-.galerija {
+tbody tr:hover {
+    background-color: var(--accent-soft);
+}
+
+.tech {
+    font-family: var(--mono);
+    font-weight: 600;
+}
+
+.level {
+    display: inline-block;
+    padding: 3px 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 999px;
+    background-color: #eef1f5;
+    color: #3d4656;
+    white-space: nowrap;
+}
+
+.level--good {
+    background-color: var(--accent-soft);
+    color: var(--accent);
+}
+
+.level--native {
+    background-color: var(--yellow);
+    color: #6b4e00;
+}
+
+.col-bar {
+    width: 40%;
+}
+
+.bar {
+    display: block;
+    height: 8px;
+    background-color: #e7ebf1;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.bar > span {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), #6ea8fe);
+    border-radius: 999px;
+}
+
+.lang-table td:first-child {
+    font-weight: 600;
+}
+
+/* ----- Chips (tools, tags) ----- */
+.chips,
+.tags {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.chips li {
+    padding: 6px 14px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+}
+
+.card {
+    max-width: 100%;
+    margin-top: 24px;
+    padding: 18px 20px;
+    border-left: 4px solid var(--accent);
+    border-radius: 12px;
+    background-color: var(--accent-soft);
+}
+
+.card h3 {
+    margin: 0 0 4px;
+}
+
+.card p {
+    margin: 0;
+}
+
+/* =========================================================
+   Projects (GitHub frames)
+   ========================================================= */
+.projects {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    padding: 16px;
-    border: 4px solid #1a5fb4;
-    border-radius: 14px;
-    background-color: white;
+    gap: 18px;
 }
 
-.galerija img {
+.project {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    border: 2px dashed #c7d3e6;
+    border-radius: 14px;
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.project:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow);
+}
+
+/* left side: GitHub link */
+.project__link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    padding: 22px;
+    background-color: var(--dark);
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.gh-icon {
+    width: 34px;
+    height: 34px;
+    fill: #ffffff;
+}
+
+.project__repo {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: #9fb3d1;
+    word-break: break-word;
+}
+
+.project__cta {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #6ea8fe;
+}
+
+.project__link:hover .project__cta {
+    text-decoration: underline;
+}
+
+/* right side: description */
+.project__info {
+    padding: 20px 24px;
+}
+
+.project__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.project__head h3 {
+    margin: 0;
+}
+
+.status {
+    padding: 3px 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #6b4e00;
+    background-color: var(--yellow);
+    border-radius: 999px;
+}
+
+.project__info p {
+    margin: 8px 0 12px;
+    color: var(--muted);
+}
+
+.tags li {
+    padding: 3px 10px;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--accent);
+    background-color: var(--accent-soft);
+    border-radius: 6px;
+}
+
+.github-all {
+    margin-top: 22px;
+}
+
+/* =========================================================
+   Gallery
+   ========================================================= */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* mobile first: 2 columns */
+    gap: 12px;
+}
+
+.gallery img {
     display: block;
     width: 100%;
     aspect-ratio: 1 / 1;
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: 10px;
+    background-color: var(--accent-soft);
+    transition: transform 0.2s;
 }
 
-.kartite {
-    box-sizing: border-box;
-    width: 280px;
-    max-width: 100%; /* N8 2.: kartīte nekad nav platāka par vecāku elementu */
-    padding: 15px;
-    border: 4px solid #1a5fb4;
-    border-radius: 12px;
-    background-color: #f5f8fd;
-    margin-bottom: 20px;
+.gallery img:hover {
+    transform: scale(1.03);
 }
 
-.kartite h3 {
-    margin-top: 0;
+@media (min-width: 600px) {
+    .gallery {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .gallery .big {
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+    /* last photo is wide, so the grid has no empty cell */
+    .gallery img:last-child {
+        grid-column: span 2;
+        aspect-ratio: auto;
+        height: 100%;
+    }
 }
 
-.kartite p {
-    margin-bottom: 0;
-}
-
-.atstarpe-a {
-    margin-bottom: 20px;
-}
-.atstarpe-b {
-    margin-top: 30px;
-}
-
+/* =========================================================
+   Contact form
+   ========================================================= */
 form {
     display: grid;
     gap: 6px;
-    max-width: 480px;
+    max-width: 520px;
 }
 
 label {
     font-weight: 600;
-    margin-top: 8px;
+    margin-top: 10px;
 }
 
 input, select, textarea {
     font-family: inherit;
     font-size: 16px;
-    padding: 10px 12px;
-    border: 2px solid #c9d0da;
-    border-radius: 8px;
-    background-color: white;
-    color: #2b2b2b;
-    min-width: 0; /* N8 2.: bez šī 320px platumā lauki izlīda ārā no sekcijas */
-}
-input[type="email"] {
-    border-style: dashed;
-    border-color: #1a5fb4;
-    background-color: #f5f8fd;
+    padding: 11px 13px;
+    border: 2px solid #d3d9e2;
+    border-radius: 10px;
+    background-color: #fbfcfe;
+    color: var(--text);
+    min-width: 0; /* fields never overflow the section on small screens */
 }
 
 input:focus, select:focus, textarea:focus {
-    outline: 3px solid rgb(255, 200, 80);
-    outline-offset: 2px;
-    border-color: #1a5fb4;
+    outline: 3px solid rgba(26, 95, 180, 0.25);
+    outline-offset: 0;
+    border-color: var(--accent);
 }
 
 button {
     justify-self: start;
-    margin-top: 14px;
-    padding: 11px 26px;
+    margin-top: 16px;
+    padding: 12px 28px;
     font-family: inherit;
     font-size: 16px;
     font-weight: 600;
-    color: white;
-    background-color: #1a5fb4;
+    color: #ffffff;
+    background-color: var(--accent);
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
+    transition: background-color 0.2s, transform 0.15s;
 }
 
 button:hover {
-    background-color: #144a8c;
+    background-color: var(--accent-dark);
+    transform: translateY(-2px);
 }
 
+/* =========================================================
+   Footer
+   ========================================================= */
 footer {
-    background-color: #1f2933;
+    position: relative;
+    z-index: 1;
+    background-color: var(--dark);
     text-align: center;
-    padding: 20px 16px;
+    padding: 24px 16px;
 }
 
 footer p {
     margin: 0;
-    color: #e4e7eb;
+    color: #9fb3d1;
+    font-size: 0.9rem;
 }
 
+footer .mono {
+    color: #6ea8fe;
+}
+
+/* =========================================================
+   Mobile (600px and less)
+   ========================================================= */
 @media (max-width: 600px) {
-    .ievads {
+    .header-inner {
+        justify-content: center;
+    }
+
+    nav {
+        width: 100%;
+    }
+
+    nav ul {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+    }
+
+    nav a {
+        display: block;
+        text-align: center;
+        padding: 7px 6px;
+        font-size: 0.9rem;
+    }
+
+    section {
+        padding: 22px 18px;
+    }
+
+    .hero {
         flex-direction: column;
         align-items: center;
         text-align: center;
     }
-    .ievads p {
+
+    .hero__text p:not(.hero__hello):not(.hero__role) {
         text-align: left;
     }
-    /* h1 {
-        font-size: 36px;
-    }
-    N8 6.: izkomentēju — clamp() tagad pats samazina virsrakstu telefonā */
-    section {
-        padding: 20px 18px;
-    }
-    .galerija {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
 
-
-/* ===== N8 — responsīvais dizains ===== */
-
-/* N8 2. Kas plīst 320px platumā:
-   - navigācija: 6 saites sadalās vairākās nevienādās rindās un aizņem daudz vietas;
-   - kartīte: fiksētais platums 280px ir lielāks par vietu sekcijā → horizontāla ritjosla;
-   - galerija: bildes ļoti mazas;
-   - forma: ievades lauki izlīda ārā no sekcijas (izlaboju ar min-width: 0).
-   Kartītes platums ar max-width: 100%: 320px ekrānā — 248px, 1280px ekrānā — 280px. */
-
-/* N8 3. Navigācija telefonā */
-@media (max-width: 600px) {
-    nav {
-        width: 100%;
+    .hero__buttons {
+        justify-content: center;
     }
-    nav ul {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 6px;
+
+    .project {
+        grid-template-columns: 1fr; /* link on top, description below */
     }
-    nav li {
-        margin: 0;
+
+    .project__link {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
     }
-    nav a {
-        display: block;
-        text-align: center;
+
+    .col-bar {
+        display: none; /* hide progress bars on narrow screens */
     }
 }
-/* Noteikumi iekš @media strādā tikai tad, kad nosacījums ir patiess —
-   šeit, kad loga platums ir 600px vai mazāks.
-   390px: izvēlne 2 kolonnās. 1280px: noteikumi nestrādā, izvēlne vienā rindā. */
 
-/* N8 4. Mobile-first: lielais attēls tikai platākiem ekrāniem */
-@media (min-width: 600px) {
-    .galerija .liela {
-        grid-column: span 2;
-        grid-row: span 2;
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
     }
 }
-/* max-width: 600px — strādā LĪDZ 600px (≤ 600px), mazajiem ekrāniem.
-   min-width: 600px — strādā NO 600px un platāk (≥ 600px), lielajiem ekrāniem.
-   Ārpus @media tagad ir stils mazākajam ekrānam (telefonam): visi attēli vienādi.
-   Lielajiem ekrāniem ar min-width tikai pievienojam lielo attēlu. */
-
-/* N8 7. Pārbaude: 320, 390, 768 un 1280px — horizontālas ritjoslas nav.
-
-   Elements       | Kā atrisināts         | Kāpēc
-   ---------------|-----------------------|----------------------------------------------
-   main           | bez @media            | max-width + margin: auto — centrējas un sašaurinās pats
-   kartīte        | bez @media            | max-width: 100% — nekad nav platāka par vecāku
-   virsraksts h1  | bez @media            | clamp() — izmērs mainās kopā ar ekrāna platumu
-   tabula, forma  | bez @media            | width: 100% / max-width — sašaurinās paši
-   navigācija     | @media (max-width)    | telefonā vajag citu izkārtojumu — 2 kolonnas
-   .ievads        | @media (max-width)    | bilde un teksts blakus neietilpst — vajag kolonnu
-   galerija       | @media (max-width)    | 4 kolonnas telefonā — bildes par mazām, vajag 2
-   lielais attēls | @media (min-width)    | mazā ekrānā izjauc režģi — tikai no 600px
-
-   @media vajag tad, kad mazam ekrānam vajag CITU noteikumu, nevis to pašu mazākā izmērā. */
