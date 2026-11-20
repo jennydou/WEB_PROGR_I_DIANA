@@ -1,8 +1,4 @@
-/* =========================================================
-   Just Dou — Frontend Developer Portfolio
-   ========================================================= */
 
-/* ----- Colors & shared values ----- */
 :root {
     --bg: #f4f1ea;
     --surface: #ffffff;
@@ -30,7 +26,7 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 90px; /* so the sticky header doesn't cover section titles */
+    scroll-padding-top: 90px; 
 }
 
 body {
@@ -38,10 +34,16 @@ body {
     font-family: "Inter", Arial, Helvetica, sans-serif;
     color: var(--text);
     background-color: var(--bg);
-    /* subtle dot grid so the background isn't empty */
+    
     background-image: radial-gradient(rgba(26, 95, 180, 0.12) 1px, transparent 1px);
     background-size: 22px 22px;
     line-height: 1.6;
+}
+
+
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 h1, h2, h3 {
@@ -49,14 +51,15 @@ h1, h2, h3 {
     letter-spacing: -0.02em;
 }
 
+
 h1 {
-    font-size: clamp(2rem, 8vw, 3rem); /* min 32px, grows with screen, max 48px */
+    font-size: clamp(1.75rem, 8vw, 2.5rem); 
     font-weight: 800;
     margin: 0 0 6px;
 }
 
 h2 {
-    font-size: 1.625rem;
+    font-size: 1.625rem; 
     font-weight: 700;
     margin: 0 0 6px;
     color: var(--dark);
@@ -96,85 +99,21 @@ a {
     position: absolute;
     width: 1px;
     height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
     overflow: hidden;
     clip: rect(0 0 0 0);
+    clip-path: inset(50%);
     white-space: nowrap;
 }
 
-/* =========================================================
-   Decorative side frames (only on wide screens)
-   ========================================================= */
+
 .side-frame {
     display: none;
 }
 
-@media (min-width: 1280px) {
-    .side-frame {
-        display: block;
-        position: fixed;
-        top: 120px;
-        width: calc((100vw - 900px) / 2 - 64px);
-        max-width: 280px;
-        padding: 38px 18px 18px;
-        background-color: rgba(22, 27, 38, 0.92);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: var(--radius);
-        box-shadow: 0 12px 40px rgba(16, 24, 40, 0.18);
-        color: #9fb3d1;
-        font-family: var(--mono);
-        font-size: 12px;
-        pointer-events: none;
-        user-select: none;
-        z-index: 0;
-    }
 
-    .side-frame--left {
-        left: 32px;
-        transform: rotate(-2deg);
-    }
-
-    .side-frame--right {
-        right: 32px;
-        top: 220px;
-        transform: rotate(2deg);
-    }
-
-    .side-frame pre {
-        margin: 0;
-        white-space: pre;
-        overflow: hidden;
-        line-height: 1.7;
-    }
-
-    .side-frame__dots {
-        position: absolute;
-        top: 14px;
-        left: 16px;
-        display: flex;
-        gap: 6px;
-    }
-
-    .side-frame__dots i {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: #ff5f57;
-    }
-    .side-frame__dots i:nth-child(2) { background: #febc2e; }
-    .side-frame__dots i:nth-child(3) { background: #28c840; }
-
-    .side-frame__label {
-        position: absolute;
-        top: 11px;
-        right: 16px;
-        font-size: 11px;
-        color: #6b7a90;
-    }
-}
-
-/* =========================================================
-   Header & navigation
-   ========================================================= */
 .site-header {
     position: sticky;
     top: 0;
@@ -232,16 +171,16 @@ nav a:hover {
     color: var(--dark);
 }
 
+
+.logo:focus-visible,
 nav a:focus-visible,
 .btn:focus-visible,
-.project__link:focus-visible {
+.project__link:focus-visible,
+button:focus-visible {
     outline: 3px solid var(--yellow);
     outline-offset: 2px;
 }
 
-/* =========================================================
-   Layout
-   ========================================================= */
 main {
     position: relative;
     z-index: 1;
@@ -264,9 +203,7 @@ section {
     color: var(--muted);
 }
 
-/* =========================================================
-   Hero / About
-   ========================================================= */
+
 .hero {
     display: flex;
     gap: 32px;
@@ -275,7 +212,6 @@ section {
     overflow: hidden;
 }
 
-/* blue strip on top of the hero card */
 .hero::before {
     content: "";
     position: absolute;
@@ -286,6 +222,8 @@ section {
 
 .hero__photo {
     flex-shrink: 0;
+    width: 180px;
+    height: 180px; 
     border-radius: 50%;
     border: 5px solid var(--accent-soft);
     box-shadow: 0 0 0 2px var(--accent);
@@ -329,6 +267,7 @@ section {
 }
 
 .badge__pulse {
+    flex-shrink: 0;
     width: 8px;
     height: 8px;
     border-radius: 50%;
@@ -349,13 +288,14 @@ section {
     margin-top: 20px;
 }
 
-/* ----- Buttons ----- */
+
 .btn {
     display: inline-block;
     padding: 11px 22px;
     font-weight: 600;
     font-size: 0.95rem;
     text-decoration: none;
+    border: 2px solid transparent; 
     border-radius: 10px;
     transition: transform 0.15s, background-color 0.2s, color 0.2s;
 }
@@ -367,15 +307,17 @@ section {
 .btn--primary {
     color: #ffffff;
     background-color: var(--accent);
+    border-color: var(--accent);
 }
 
 .btn--primary:hover {
     background-color: var(--accent-dark);
+    border-color: var(--accent-dark);
 }
 
 .btn--ghost {
     color: var(--accent);
-    border: 2px solid var(--accent);
+    border-color: var(--accent);
 }
 
 .btn--ghost:hover {
@@ -383,9 +325,7 @@ section {
     background-color: var(--accent);
 }
 
-/* =========================================================
-   Quick facts
-   ========================================================= */
+
 .facts {
     background-color: var(--dark);
     color: #d6deeb;
@@ -395,14 +335,15 @@ section {
     box-shadow: var(--shadow);
 }
 
-.facts h3 {
+.facts h2 {
     margin-top: 0;
     color: #ffffff;
     font-family: var(--mono);
     font-size: 1rem;
+    letter-spacing: 0;
 }
 
-.facts h3::before {
+.facts h2::before {
     content: "> ";
     color: #6ea8fe;
 }
@@ -412,7 +353,8 @@ section {
     padding: 0;
     margin: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+
+    grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
     gap: 6px 24px;
 }
 
@@ -430,9 +372,6 @@ section {
     color: var(--yellow);
 }
 
-/* =========================================================
-   Tables (skills + languages)
-   ========================================================= */
 .table-wrap {
     overflow-x: auto;
     border: 1px solid var(--border);
@@ -497,7 +436,9 @@ tbody tr:hover {
     color: #6b4e00;
 }
 
+
 .col-bar {
+    display: none;
     width: 40%;
 }
 
@@ -520,7 +461,19 @@ tbody tr:hover {
     font-weight: 600;
 }
 
-/* ----- Chips (tools, tags) ----- */
+.lang-code {
+    display: inline-block;
+    min-width: 2.4em;
+    margin-right: 6px;
+    padding: 2px 6px;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    text-align: center;
+    color: #ffffff;
+    background-color: var(--dark);
+    border-radius: 6px;
+}
+
 .chips,
 .tags {
     list-style: none;
@@ -540,6 +493,7 @@ tbody tr:hover {
     border-radius: 999px;
 }
 
+
 .card {
     max-width: 100%;
     margin-top: 24px;
@@ -557,9 +511,7 @@ tbody tr:hover {
     margin: 0;
 }
 
-/* =========================================================
-   Projects (GitHub frames)
-   ========================================================= */
+
 .projects {
     display: grid;
     gap: 18px;
@@ -567,7 +519,7 @@ tbody tr:hover {
 
 .project {
     display: grid;
-    grid-template-columns: 220px 1fr;
+    grid-template-columns: 1fr;
     border: 2px dashed #c7d3e6;
     border-radius: 14px;
     overflow: hidden;
@@ -579,11 +531,11 @@ tbody tr:hover {
     box-shadow: var(--shadow);
 }
 
-/* left side: GitHub link */
 .project__link {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
     gap: 10px;
     padding: 22px;
     background-color: var(--dark);
@@ -614,7 +566,6 @@ tbody tr:hover {
     text-decoration: underline;
 }
 
-/* right side: description */
 .project__info {
     padding: 20px 24px;
 }
@@ -640,6 +591,11 @@ tbody tr:hover {
     border-radius: 999px;
 }
 
+.status--live {
+    color: #1a6b34;
+    background-color: #e6f6ea;
+}
+
 .project__info p {
     margin: 8px 0 12px;
     color: var(--muted);
@@ -658,12 +614,9 @@ tbody tr:hover {
     margin-top: 22px;
 }
 
-/* =========================================================
-   Gallery
-   ========================================================= */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* mobile first: 2 columns */
+    grid-template-columns: repeat(2, 1fr);
     gap: 12px;
 }
 
@@ -681,25 +634,6 @@ tbody tr:hover {
     transform: scale(1.03);
 }
 
-@media (min-width: 600px) {
-    .gallery {
-        grid-template-columns: repeat(4, 1fr);
-    }
-    .gallery .big {
-        grid-column: span 2;
-        grid-row: span 2;
-    }
-    /* last photo is wide, so the grid has no empty cell */
-    .gallery img:last-child {
-        grid-column: span 2;
-        aspect-ratio: auto;
-        height: 100%;
-    }
-}
-
-/* =========================================================
-   Contact form
-   ========================================================= */
 form {
     display: grid;
     gap: 6px;
@@ -713,13 +647,17 @@ label {
 
 input, select, textarea {
     font-family: inherit;
-    font-size: 16px;
+    font-size: 1rem; 
     padding: 11px 13px;
     border: 2px solid #d3d9e2;
     border-radius: 10px;
     background-color: #fbfcfe;
     color: var(--text);
-    min-width: 0; /* fields never overflow the section on small screens */
+    min-width: 0; 
+}
+
+textarea {
+    resize: vertical;
 }
 
 input:focus, select:focus, textarea:focus {
@@ -728,12 +666,12 @@ input:focus, select:focus, textarea:focus {
     border-color: var(--accent);
 }
 
-button {
+form button {
     justify-self: start;
     margin-top: 16px;
     padding: 12px 28px;
     font-family: inherit;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 600;
     color: #ffffff;
     background-color: var(--accent);
@@ -743,14 +681,12 @@ button {
     transition: background-color 0.2s, transform 0.15s;
 }
 
-button:hover {
+form button:hover {
     background-color: var(--accent-dark);
     transform: translateY(-2px);
 }
 
-/* =========================================================
-   Footer
-   ========================================================= */
+
 footer {
     position: relative;
     z-index: 1;
@@ -769,21 +705,25 @@ footer .mono {
     color: #6ea8fe;
 }
 
-/* =========================================================
-   Mobile (600px and less)
-   ========================================================= */
-@media (max-width: 600px) {
-    .header-inner {
-        justify-content: center;
-    }
 
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+
+
+@media (max-width: 600px) {
     nav {
         width: 100%;
     }
 
     nav ul {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr); 
         gap: 6px;
     }
 
@@ -794,9 +734,27 @@ footer .mono {
         font-size: 0.9rem;
     }
 
+    .header-inner {
+        justify-content: center;
+    }
+
+   
+    .site-header {
+        position: static;
+    }
+
+    html {
+        scroll-padding-top: 12px;
+    }
+
     section {
         padding: 22px 18px;
     }
+
+    .facts {
+        padding: 22px 18px;
+    }
+
 
     .hero {
         flex-direction: column;
@@ -811,27 +769,104 @@ footer .mono {
     .hero__buttons {
         justify-content: center;
     }
+}
+
+@media (min-width: 600px) {
+    .gallery {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .gallery .big {
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+
+
+    .gallery img:last-child {
+        grid-column: span 2;
+        aspect-ratio: auto;
+        height: auto;
+        align-self: stretch;
+        contain: size;
+    }
 
     .project {
-        grid-template-columns: 1fr; /* link on top, description below */
+        grid-template-columns: 220px 1fr;
     }
 
     .project__link {
-        flex-direction: row;
-        flex-wrap: wrap;
-        align-items: center;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+        justify-content: center;
     }
 
     .col-bar {
-        display: none; /* hide progress bars on narrow screens */
+        display: table-cell;
     }
 }
 
-/* Respect users who prefer less motion */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation: none !important;
-        transition: none !important;
-        scroll-behavior: auto !important;
+
+@media (min-width: 1440px) {
+    .side-frame {
+        display: block;
+        position: fixed;
+        top: 120px;
+        width: calc((100vw - 900px) / 2 - 48px);
+        max-width: 300px;
+        padding: 38px 18px 18px;
+        background-color: rgba(22, 27, 38, 0.92);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: var(--radius);
+        box-shadow: 0 12px 40px rgba(16, 24, 40, 0.18);
+        color: #9fb3d1;
+        font-family: var(--mono);
+        font-size: 12px;
+        pointer-events: none;
+        user-select: none;
+        z-index: 0;
+    }
+
+    .side-frame--left {
+        left: 24px;
+        transform: rotate(-2deg);
+    }
+
+    .side-frame--right {
+        right: 24px;
+        top: 220px;
+        transform: rotate(2deg);
+    }
+
+    .side-frame pre {
+        margin: 0;
+        white-space: pre;
+        overflow: hidden;
+        line-height: 1.7;
+    }
+
+    .side-frame__dots {
+        position: absolute;
+        top: 14px;
+        left: 16px;
+        display: flex;
+        gap: 6px;
+    }
+
+    .side-frame__dots i {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #ff5f57;
+    }
+    .side-frame__dots i:nth-child(2) { background: #febc2e; }
+    .side-frame__dots i:nth-child(3) { background: #28c840; }
+
+    .side-frame__label {
+        position: absolute;
+        top: 11px;
+        right: 16px;
+        font-size: 11px;
+        color: #6b7a90;
     }
 }

@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Just Dou — Frontend Developer Portfolio</title>
     <meta name="description" content="Just Dou — frontend developer from Riga, Latvia. Portfolio, skills, projects and contacts. Open to remote work.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23161b26'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='15' font-weight='700' text-anchor='middle' fill='%236ea8fe'%3E%3C/%3E%3C/text%3E%3C/svg%3E">
 
-    <!-- Google Fonts: Inter for text, JetBrains Mono for the "code" accents -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -15,7 +15,7 @@
 </head>
 <body>
 
-    <!-- Decorative side frames (visible only on wide screens) -->
+
     <div class="side-frame side-frame--left" aria-hidden="true">
         <span class="side-frame__dots"><i></i><i></i><i></i></span>
         <pre><code>01  const dev = {
@@ -75,7 +75,6 @@
 
     <main>
 
-        <!-- ===== ABOUT / HERO ===== -->
         <section id="about" class="hero">
             <img class="hero__photo" src="diana.jpg" width="180" height="180"
                  alt="Illustrated portrait of Just Dou">
@@ -106,7 +105,7 @@
         </section>
 
         <aside class="facts" aria-labelledby="facts-title">
-            <h3 id="facts-title">Quick facts</h3>
+            <h2 id="facts-title">Quick facts</h2>
             <ul>
                 <li><b>Location:</b> Riga, Latvia (UTC+2)</li>
                 <li><b>Focus:</b> Frontend development</li>
@@ -117,8 +116,6 @@
             </ul>
             <p class="quote">“Good design is the one you don’t notice — it just works.”</p>
         </aside>
-
-        <!-- ===== SKILLS ===== -->
         <section id="skills">
             <h2><span class="mono accent">01.</span> Technical skills</h2>
             <p class="section-intro">Programming languages and technologies I work with.</p>
@@ -198,7 +195,7 @@
             </div>
         </section>
 
-        <!-- ===== SPOKEN LANGUAGES ===== -->
+     
         <section id="languages">
             <h2><span class="mono accent">02.</span> Languages</h2>
             <p class="section-intro">I can work and communicate with clients in three languages.</p>
@@ -212,16 +209,17 @@
                         </tr>
                     </thead>
                     <tbody>
+                        
                         <tr>
-                            <td>🇬🇧 English</td>
+                            <td><span class="lang-code">EN</span> English</td>
                             <td><span class="level level--good">Advanced (C1)</span></td>
                         </tr>
                         <tr>
-                            <td>🇱🇻 Latvian</td>
+                            <td><span class="lang-code">LV</span> Latvian</td>
                             <td><span class="level level--native">Native — bilingual</span></td>
                         </tr>
                         <tr>
-                            <td>🇷🇺 Russian</td>
+                            <td><span class="lang-code">RU</span> Russian</td>
                             <td><span class="level level--native">Native — bilingual</span></td>
                         </tr>
                     </tbody>
@@ -229,7 +227,6 @@
             </div>
         </section>
 
-        <!-- ===== PROJECTS (GitHub) ===== -->
         <section id="projects">
             <h2><span class="mono accent">03.</span> Projects</h2>
             <p class="section-intro">
@@ -238,21 +235,21 @@
 
             <div class="projects">
 
-                <!-- Copy this whole <article> block to add a new project -->
+                
                 <article class="project">
-                    <a class="project__link" href="https://github.com/" target="_blank" rel="noopener">
-                        <svg class="gh-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.130-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-                        <span class="project__repo">repo / todo-app</span>
-                        <span class="project__cta">View on GitHub →</span>
+                    <a class="project__link" href="../todo/index.html">
+                        <svg class="gh-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.950-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                        <span class="project__repo">web-portfolio / todo</span>
+                        <span class="project__cta">Open live demo →</span>
                     </a>
                     <div class="project__info">
                         <div class="project__head">
                             <h3>To-Do App</h3>
-                            <span class="status">Coming soon</span>
+                            <span class="status status--live">Live</span>
                         </div>
-                        <p>Project description goes here: what the app does, what problem it solves and what I learned while building it.</p>
+                        <p>A small task list built with plain JavaScript and the DOM: add tasks (button or Enter), mark them as done, delete one task or all finished ones, live task counter. Empty input is not accepted.</p>
                         <ul class="tags">
-                            <li>HTML</li><li>CSS</li><li>JavaScript</li>
+                            <li>HTML</li><li>CSS</li><li>JavaScript</li><li>DOM</li>
                         </ul>
                     </div>
                 </article>
@@ -294,38 +291,33 @@
                 </article>
 
             </div>
-
             <a class="btn btn--ghost github-all" href="https://github.com/" target="_blank" rel="noopener">All my code on GitHub →</a>
         </section>
-
-        <!-- ===== GALLERY ===== -->
         <section id="gallery">
             <h2><span class="mono accent">04.</span> Off the keyboard</h2>
             <p class="section-intro">A bit of developer life — because not everything is code.</p>
 
             <div class="gallery">
-                <img class="big" src="galerija/1.jpg" alt="A mysterious sea creature">
-                <img src="galerija/2.jpg" alt="Me">
-                <img src="galerija/3.jpg" alt="A cat with a gun">
-                <img src="galerija/4.jpg" alt="A fish in cool sneakers">
-                <img src="galerija/5.jpg" alt="A shrimp at a laptop — the classic programmer posture">
-                <img src="galerija/6.jpg" alt="A programmer on deadline day">
-                <img src="galerija/7.jpg" alt="The code broke">
-                <img src="galerija/8.jpg" alt="The code broke — part 2">
+                <img class="big" loading="lazy" src="galerija/1.jpg" alt="A mysterious sea creature">
+                <img loading="lazy" src="galerija/2.jpg" alt="Me">
+                <img loading="lazy" src="galerija/3.jpg" alt="A cat with a gun">
+                <img loading="lazy" src="galerija/4.jpg" alt="A fish in cool sneakers">
+                <img loading="lazy" src="galerija/5.jpg" alt="A shrimp at a laptop — the classic programmer posture">
+                <img loading="lazy" src="galerija/6.jpg" alt="A programmer on deadline day">
+                <img loading="lazy" src="galerija/7.jpg" alt="The code broke">
+                <img loading="lazy" src="galerija/8.jpg" alt="The code broke — part 2">
             </div>
         </section>
-
-        <!-- ===== CONTACT ===== -->
         <section id="contact">
             <h2><span class="mono accent">05.</span> Contact</h2>
             <p class="section-intro">Have a project, a question or a job offer? Send me a message — I usually reply within a day.</p>
 
             <form>
                 <label for="nameField">Name</label>
-                <input type="text" id="nameField" name="name" placeholder="Your name">
+                <input type="text" id="nameField" name="name" placeholder="Your name" autocomplete="name" required>
 
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="name@example.com">
+                <input type="email" id="email" name="email" placeholder="name@example.com" autocomplete="email" required>
 
                 <label for="topic">Topic</label>
                 <select id="topic" name="topic">
@@ -336,7 +328,7 @@
                 </select>
 
                 <label for="message">Message</label>
-                <textarea id="message" name="message" rows="5" placeholder="Tell me about your project..."></textarea>
+                <textarea id="message" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
 
                 <button type="submit">Send message</button>
             </form>
